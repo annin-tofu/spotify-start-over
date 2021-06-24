@@ -1,6 +1,7 @@
 //$ npm init -y : to initialize package.json.file
 
 // npm i nodemon --save-dev : to make it dev dependency
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -11,6 +12,8 @@ const SpotifyWebApi = require("spotify-web-api-node");
 
 const app = express();
 app.use(cors());
+
+//Why bodyparser is crossed out below?? version update??
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -70,6 +73,7 @@ app.post("/login", (req, res) => {
 //lyrics
 app.get("/lyrics", async (req, res) => {
   const lyrics =
+    //   "||" "double straight line"s means "OR"
     (await lyricsFinder(req.query.artist, req.query.track)) ||
     "No Lyrics Found";
   res.json({ lyrics });
